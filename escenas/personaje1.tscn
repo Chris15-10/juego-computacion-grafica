@@ -1,128 +1,35 @@
-[gd_scene load_steps=21 format=3 uid="uid://d11vhsfxap15e"]
+[gd_scene load_steps=6 format=3 uid="uid://d11vhsfxap15e"]
 
 [ext_resource type="Script" uid="uid://cpa8kubqs7rc1" path="res://scripts/Personaje1.cs" id="1_82mvp"]
-[ext_resource type="Texture2D" uid="uid://euckaqafhllh" path="res://recursos/personaje 1/spritesheet.png" id="2_td8ws"]
-[ext_resource type="Texture2D" uid="uid://ds5ejd0gftq3k" path="res://recursos/personaje 1/frame-1.png" id="3_u1uba"]
-[ext_resource type="Texture2D" uid="uid://d3ah67ly3yxvv" path="res://recursos/personaje 1/frame-2.png" id="4_rx5vl"]
-[ext_resource type="Texture2D" uid="uid://ceq01dgn0tbig" path="res://recursos/personaje 1/frame-3.png" id="5_1t8ll"]
-[ext_resource type="Texture2D" uid="uid://dh782i7q13lhq" path="res://recursos/personaje 1/frame-4.png" id="6_mnao5"]
-[ext_resource type="Texture2D" uid="uid://71pxl1cvaonh" path="res://recursos/personaje 1/frame-5.png" id="7_hynon"]
-[ext_resource type="Texture2D" uid="uid://dk7cu2royqqfu" path="res://recursos/personaje 1/frame-7.png" id="8_gon05"]
-[ext_resource type="Texture2D" uid="uid://8fgch2dgyin5" path="res://recursos/personaje 1/frame-6.png" id="9_s4w2n"]
-[ext_resource type="Texture2D" uid="uid://b67l5s63k4ktk" path="res://recursos/personaje 1/frame-8.png" id="10_7j4pp"]
+[ext_resource type="Resource" uid="uid://bljoo1pt5ki7h" path="res://(.tres)/personaje.tres" id="2_fusw0"]
+[ext_resource type="PackedScene" uid="uid://c8at1ynm5h7s7" path="res://escenas/armas.tscn" id="11_td8ws"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5i13x"]
-atlas = ExtResource("2_td8ws")
-region = Rect2(0, 0, 240, 240)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_65ksc"]
-atlas = ExtResource("2_td8ws")
-region = Rect2(240, 0, 240, 240)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_irbon"]
-atlas = ExtResource("2_td8ws")
-region = Rect2(480, 0, 240, 240)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_8p3su"]
-atlas = ExtResource("2_td8ws")
-region = Rect2(720, 0, 240, 240)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_lvhcg"]
-atlas = ExtResource("2_td8ws")
-region = Rect2(960, 0, 240, 240)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_yboxe"]
-atlas = ExtResource("2_td8ws")
-region = Rect2(1200, 0, 240, 240)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_s415g"]
-atlas = ExtResource("2_td8ws")
-region = Rect2(1440, 0, 240, 240)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_7x6hk"]
-atlas = ExtResource("2_td8ws")
-region = Rect2(1680, 0, 240, 240)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_11n1k"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5i13x")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_65ksc")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_irbon")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_8p3su")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_lvhcg")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_yboxe")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_s415g")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_7x6hk")
-}],
-"loop": true,
-"name": &"caminando",
-"speed": 12.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("3_u1uba")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_rx5vl")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_1t8ll")
-}, {
-"duration": 1.0,
-"texture": ExtResource("6_mnao5")
-}, {
-"duration": 1.0,
-"texture": ExtResource("7_hynon")
-}, {
-"duration": 1.0,
-"texture": ExtResource("8_gon05")
-}, {
-"duration": 1.0,
-"texture": ExtResource("9_s4w2n")
-}, {
-"duration": 1.0,
-"texture": ExtResource("10_7j4pp")
-}],
-"loop": true,
-"name": &"default",
-"speed": 12.0
-}]
+[sub_resource type="SpriteFrames" id="SpriteFrames_fusw0"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nulrv"]
 radius = 11.0
-height = 34.0
+height = 28.0
 
 [node name="Node2D" type="Node2D"]
 
-[node name="personaje 1" type="CharacterBody2D" parent="." node_paths=PackedStringArray("_animatedSprite2D")]
+[node name="personaje 1" type="CharacterBody2D" parent="." node_paths=PackedStringArray("_arma")]
+position = Vector2(5, -16)
 script = ExtResource("1_82mvp")
-MoveSpeed = 150.0
-_animatedSprite2D = NodePath("AnimatedSprite2D")
+Config = ExtResource("2_fusw0")
+_arma = NodePath("Arma")
+
+[node name="Camera2D" type="Camera2D" parent="personaje 1"]
+position = Vector2(-5, 15)
+zoom = Vector2(1.7, 1.7)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="personaje 1"]
-scale = Vector2(0.25, 0.25)
-sprite_frames = SubResource("SpriteFrames_11n1k")
-animation = &"caminando"
-autoplay = "default"
-frame_progress = 0.0263796
+position = Vector2(-5, 16)
+scale = Vector2(0.2, 0.2)
+sprite_frames = SubResource("SpriteFrames_fusw0")
+
+[node name="Arma" parent="personaje 1" instance=ExtResource("11_td8ws")]
+position = Vector2(5, 29)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="personaje 1"]
-visible = false
-position = Vector2(1, 8)
+position = Vector2(-7, 23)
 shape = SubResource("CapsuleShape2D_nulrv")

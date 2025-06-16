@@ -1,0 +1,32 @@
+[gd_resource type="Resource" load_steps=5 format=3 uid="uid://dl8yb3qh1pwlx"]
+
+[ext_resource type="Texture2D" uid="uid://81ymce2yeal6" path="res://recursos/ERA Weapon Secondary (4).png" id="1_me757"]
+[ext_resource type="Script" uid="uid://c281hb0ddhbeo" path="res://scripts/ArmaConfig.cs" id="1_q4kmx"]
+[ext_resource type="PackedScene" uid="uid://bla24gbrt2rxx" path="res://escenas/bala.tscn" id="2_cttt8"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cttt8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_me757")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_me757")
+}],
+"loop": true,
+"name": &"disparo",
+"speed": 5.0
+}]
+
+[resource]
+script = ExtResource("1_q4kmx")
+velocidad = 700
+Animaciones = SubResource("SpriteFrames_cttt8")
+Dano = 10
+BalaScene = ExtResource("2_cttt8")
+CadenciaDisparo = 0.5

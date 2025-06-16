@@ -1,0 +1,24 @@
+[gd_resource type="Resource" load_steps=5 format=3 uid="uid://8avm6fn7jafn"]
+
+[ext_resource type="Texture2D" uid="uid://cnm8uijl0ri3w" path="res://recursos/ERA Weapon Primary (44).png" id="1_ankv0"]
+[ext_resource type="PackedScene" uid="uid://bla24gbrt2rxx" path="res://escenas/bala.tscn" id="2_mq8ug"]
+[ext_resource type="Script" uid="uid://c281hb0ddhbeo" path="res://scripts/ArmaConfig.cs" id="3_7ormd"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fka4k"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ankv0")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[resource]
+script = ExtResource("3_7ormd")
+velocidad = 1000
+Animaciones = SubResource("SpriteFrames_fka4k")
+Dano = 10
+BalaScene = ExtResource("2_mq8ug")
+CadenciaDisparo = 0.1

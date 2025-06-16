@@ -3,48 +3,77 @@ using System;
 
 public partial class Personaje1 : CharacterBody2D
 {
-	[Export]
-	public float MoveSpeed = 300.0f;
+    [Export] public PersonajeConfig Config;
 
-	[Export]
-	public AnimatedSprite2D _animatedSprite2D;
+    private AnimatedSprite2D _animatedSprite;
+    [Export] private Arma _arma;
+    private Vector2 pos;
 
-	public override void _PhysicsProcess(double delta)
-	{
-		Vector2 velocity = Velocity;
+    public override void _Ready()
+    {
+        _animatedSprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 
-		// Obtener la dirección de entrada (movimiento en X e Y)
-		Vector2 direction = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down");
+        if (Config != null)
+        {
+            _animatedSprite.SpriteFrames = Config.Animaciones;
+        }
 
-		if (direction.X < 0)
-		{
-			_animatedSprite2D.FlipH = true;
-		}
-		else
-		{
-			_animatedSprite2D.FlipH = false;
-		}
+        _arma = GetNode<Arma>("Arma");
 
-		if (direction.X == 0 && direction.Y == 0)
-		{
-			_animatedSprite2D.Play("default");
-		}
-		else
-		{
-			_animatedSprite2D.Play("caminando");
-		}
+        pos = _arma.Position;
+    }
+    public override void _PhysicsProcess(double delta)
+    {
+        if (Config == null) return;
 
-		if (direction != Vector2.Zero)
-		{
-			direction = direction.Normalized();
-			velocity = direction * MoveSpeed;
-		}
-		else
-		{
-			velocity = Vector2.Zero;
-		}
+        Vector2 direction = Input.GetVector("izquierda", "derecha", "arriba", "abajo");
 
-		Velocity = velocity;
-		MoveAndSlide();
-	}
+        Velocity = direction * Config.MoveSpeed;
+        MoveAndSlide();
+
+        if (direction.Length() > 0) 
+            _animatedSprite.Play("caminando");
+        else 
+            _animatedSprite.Play("idle");
+        
+        if (_arma != null)
+        {
+            _arma.LookAt(GetGlobalMousePosition());
+
+            if (_arma.GlobalPosition.X < GetGlobalMousePosition().X)
+            {
+                _animatedSprite.FlipH = false;
+                _arma.Position = pos;
+                Voltear(_arma);
+            }
+            else
+            {
+                _animatedSprite.FlipH = true;
+                _arma.Position = new Vector2(-pos.X-8, pos.Y);
+                Voltear(_arma);
+            }
+
+        }
+        if (Input.IsActionJustPressed("disparo"))
+        {
+            if (_arma != null)
+            {
+                _arma.Disparar(GetGlobalMousePosition()); 
+            }
+        }
+    }
+    private void Voltear(Arma arma)
+    {
+        float rot = Mathf.Wrap(arma.RotationDegrees, 0f, 360f);
+        if (rot > 90 && rot < 270)
+        {
+            arma.Scale = new Vector2(arma.Scale.X, -Math.Abs(arma.Scale.Y)); // Voltea en Y
+        }
+        else
+        {
+            arma.Scale = new Vector2(arma.Scale.X, Math.Abs(arma.Scale.Y)); // Asegura que Y sea positivo
+        }
+    }
 }
+
+
