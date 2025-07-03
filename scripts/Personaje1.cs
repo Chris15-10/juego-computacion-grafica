@@ -31,11 +31,11 @@ public partial class Personaje1 : CharacterBody2D
         Velocity = direction * Config.MoveSpeed;
         MoveAndSlide();
 
-        if (direction.Length() > 0) 
+        if (direction.Length() > 0)
             _animatedSprite.Play("caminando");
-        else 
+        else
             _animatedSprite.Play("idle");
-        
+
         if (_arma != null)
         {
             _arma.LookAt(GetGlobalMousePosition());
@@ -49,7 +49,7 @@ public partial class Personaje1 : CharacterBody2D
             else
             {
                 _animatedSprite.FlipH = true;
-                _arma.Position = new Vector2(-pos.X-8, pos.Y);
+                _arma.Position = new Vector2(-pos.X - 8, pos.Y);
                 Voltear(_arma);
             }
 
@@ -58,7 +58,7 @@ public partial class Personaje1 : CharacterBody2D
         {
             if (_arma != null)
             {
-                _arma.Disparar(GetGlobalMousePosition()); 
+                _arma.Disparar(GetGlobalMousePosition());
             }
         }
     }
@@ -67,13 +67,24 @@ public partial class Personaje1 : CharacterBody2D
         float rot = Mathf.Wrap(arma.RotationDegrees, 0f, 360f);
         if (rot > 90 && rot < 270)
         {
-            arma.Scale = new Vector2(arma.Scale.X, -Math.Abs(arma.Scale.Y)); // Voltea en Y
+            arma.Scale = new Vector2(arma.Scale.X, -Math.Abs(arma.Scale.Y));
         }
         else
         {
-            arma.Scale = new Vector2(arma.Scale.X, Math.Abs(arma.Scale.Y)); // Asegura que Y sea positivo
+            arma.Scale = new Vector2(arma.Scale.X, Math.Abs(arma.Scale.Y));
         }
+    }
+    public ArmaConfig RecogerArma(ArmaConfig Arma)
+    {
+        if (_arma != null)
+        {
+            ArmaConfig anterior = _arma.Config;
+            _arma.Config = Arma;
+            _arma.Aplicar();
+            return anterior;
+        }
+        return null;
     }
 }
 
-
+    

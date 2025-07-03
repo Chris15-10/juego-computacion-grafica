@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=4 format=3 uid="uid://c8e7hw4jjrjbu"]
+
+[ext_resource type="Resource" uid="uid://bouue7n71t1hu" path="res://(.tres)/arma3.tres" id="1_dd7nv"]
+[ext_resource type="PackedScene" uid="uid://cl13byyllkifa" path="res://escenas/Item.tscn" id="2_lqwfh"]
+[ext_resource type="Script" uid="uid://dj3ddkcjx47r4" path="res://scripts/ObjetoLootable.cs" id="3_3b1v5"]
+
+[resource]
+script = ExtResource("3_3b1v5")
+Escena = ExtResource("2_lqwfh")
+ArmaConfig = ExtResource("1_dd7nv")
+Probabilidad = 1.0
