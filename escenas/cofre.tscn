@@ -1,0 +1,84 @@
+[gd_scene load_steps=13 format=3 uid="uid://c2rwr7sy48uc0"]
+
+[ext_resource type="Script" uid="uid://de5rg2fonecys" path="res://scripts/Cofre.cs" id="1_powyj"]
+[ext_resource type="Texture2D" uid="uid://dkv0v0eqfcu5j" path="res://recursos/cofres/!Spaceship_chest2.png" id="2_kobpx"]
+[ext_resource type="Resource" uid="uid://c8e7hw4jjrjbu" path="res://(.tres)/ObjetoLooteable.tres" id="2_rhnt1"]
+[ext_resource type="Resource" uid="uid://bm8u0ets00vvp" path="res://(.tres)/arma2 item.tres" id="3_rhnt1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rhnt1"]
+atlas = ExtResource("2_kobpx")
+region = Rect2(144, 0, 48, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hvho4"]
+atlas = ExtResource("2_kobpx")
+region = Rect2(144, 96, 48, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_prjuc"]
+atlas = ExtResource("2_kobpx")
+region = Rect2(144, 192, 48, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b07su"]
+atlas = ExtResource("2_kobpx")
+region = Rect2(144, 288, 48, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4q7if"]
+atlas = ExtResource("2_kobpx")
+region = Rect2(0, 480, 48, 96)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_u6gii"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rhnt1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hvho4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_prjuc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b07su")
+}],
+"loop": false,
+"name": &"abierto",
+"speed": 9.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4q7if")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_28bvb"]
+size = Vector2(41, 33)
+
+[sub_resource type="LabelSettings" id="LabelSettings_kobpx"]
+font_size = 11
+font_color = Color(0.968627, 0.941176, 1, 1)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Cofre" type="Area2D" parent="."]
+script = ExtResource("1_powyj")
+ObjetosPosibles = Array[Resource]([ExtResource("2_rhnt1"), ExtResource("3_rhnt1")])
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Cofre"]
+sprite_frames = SubResource("SpriteFrames_u6gii")
+animation = &"abierto"
+autoplay = "idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cofre"]
+position = Vector2(-0.5, 6.5)
+shape = SubResource("RectangleShape2D_28bvb")
+
+[node name="Mensaje" type="Label" parent="Cofre"]
+offset_left = -55.0
+offset_top = -31.0
+offset_right = 136.0
+offset_bottom = -8.0
+text = "presiona 'x' para recoger"
+label_settings = SubResource("LabelSettings_kobpx")

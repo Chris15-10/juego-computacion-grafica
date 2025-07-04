@@ -18,7 +18,7 @@ public partial class Arma : Node2D
             _sprite.SpriteFrames = Config.Animaciones;
         }
     }
-  
+
     public void Disparar(Vector2 mousePos)
     {
         if (Config == null) return;
@@ -32,10 +32,19 @@ public partial class Arma : Node2D
 
         Vector2 direction = (mousePos - _canon.GlobalPosition).Normalized();
 
+        balaInst.Rotation = direction.Angle();
+
         balaInst.Call("Init", direction, Config.velocidad, Config.Dano);
         GetTree().CurrentScene.AddChild(balaInst);
 
         _sprite?.Play("disparo");
 
+    }
+    public void Aplicar()
+    {
+        if (Config != null && _sprite != null)
+        {
+            _sprite.SpriteFrames = Config.Animaciones;
+        }
     }
 }

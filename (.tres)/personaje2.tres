@@ -1,0 +1,21 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://cwyjjrf063r8b"]
+
+[ext_resource type="Script" uid="uid://b60msny3i0k8q" path="res://scripts/PersonajeConfig.cs" id="2_vx5k5"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bsjo6"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"caminando",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[resource]
+script = ExtResource("2_vx5k5")
+MoveSpeed = 300.0
+Animaciones = SubResource("SpriteFrames_bsjo6")

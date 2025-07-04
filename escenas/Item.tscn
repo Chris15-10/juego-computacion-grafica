@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://cl13byyllkifa"]
+
+[ext_resource type="Script" uid="uid://b1r2ohmvcmhb5" path="res://scripts/Item.cs" id="1_67bck"]
+[ext_resource type="Texture2D" uid="uid://ctlrjo1ri6ykt" path="res://recursos/armas/Arma pistola mini.png" id="2_hdjqb"]
+[ext_resource type="Resource" uid="uid://bouue7n71t1hu" path="res://(.tres)/arma3.tres" id="2_o4po1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wvvap"]
+size = Vector2(16, 7)
+
+[sub_resource type="LabelSettings" id="LabelSettings_g5y43"]
+font_size = 8
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Item" type="Area2D" parent="."]
+script = ExtResource("1_67bck")
+Arma = ExtResource("2_o4po1")
+
+[node name="Sprite2D" type="Sprite2D" parent="Item"]
+texture = ExtResource("2_hdjqb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Item"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_wvvap")
+
+[node name="Mensaje" type="Label" parent="Item"]
+offset_left = -46.0
+offset_top = -24.0
+offset_right = 145.0
+offset_bottom = -1.0
+text = "presiona 'x' para recoger"
+label_settings = SubResource("LabelSettings_g5y43")
