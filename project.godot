@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="proyecto computacion grafica"
-run/main_scene="uid://dims0q2pxxu81"
+run/main_scene="uid://5d04x7cnbffg"
 config/features=PackedStringArray("4.4", "C#", "GL Compatibility")
 config/icon="res://icon.svg"
 

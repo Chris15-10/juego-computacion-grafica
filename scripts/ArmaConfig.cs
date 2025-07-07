@@ -8,6 +8,6 @@ public partial class ArmaConfig : Resource
     [Export] public int Dano = 10;
     [Export] public PackedScene BalaScene;
     [Export] public float CadenciaDisparo = 0.5f;
-    [Export] public Texture2D Icono;  
-  
+    [Export] public Texture2D Icono;
+    [Export] public Texture2D bala;
 }

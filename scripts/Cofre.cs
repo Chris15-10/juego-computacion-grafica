@@ -52,7 +52,7 @@ public partial class Cofre : Area2D
             if (instancia is Item item)
             {
                 // Posiciona el objeto alternando derecha e izquierda
-                Vector2 offset = new Vector2(32 * direccion, -16);
+                Vector2 offset = new Vector2(32 * direccion, 50);
                 item.Position = GlobalPosition + offset;
 
                 // Asigna los datos del arma

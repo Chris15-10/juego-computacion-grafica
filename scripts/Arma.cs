@@ -34,7 +34,7 @@ public partial class Arma : Node2D
 
         balaInst.Rotation = direction.Angle();
 
-        balaInst.Call("Init", direction, Config.velocidad, Config.Dano);
+        balaInst.Call("Init", direction, Config.velocidad, Config.Dano, Config.bala);
         GetTree().CurrentScene.AddChild(balaInst);
 
         _sprite?.Play("disparo");

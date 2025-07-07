@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://d11vhsfxap15e"]
+[gd_scene load_steps=7 format=3 uid="uid://d11vhsfxap15e"]
 
 [ext_resource type="Script" uid="uid://cpa8kubqs7rc1" path="res://scripts/Personaje1.cs" id="1_82mvp"]
 [ext_resource type="Resource" uid="uid://bljoo1pt5ki7h" path="res://(.tres)/personaje.tres" id="2_fusw0"]
+[ext_resource type="Script" uid="uid://b61cpsfthe45w" path="res://scripts/Vida.cs" id="4_0c04v"]
 [ext_resource type="PackedScene" uid="uid://c8at1ynm5h7s7" path="res://escenas/armas.tscn" id="11_td8ws"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_fusw0"]
@@ -10,26 +11,28 @@
 radius = 11.0
 height = 28.0
 
-[node name="Node2D" type="Node2D"]
-
-[node name="personaje 1" type="CharacterBody2D" parent="." node_paths=PackedStringArray("_arma")]
+[node name="personaje 1" type="CharacterBody2D" node_paths=PackedStringArray("_arma") groups=["jugador"]]
 position = Vector2(5, -16)
+collision_mask = 0
 script = ExtResource("1_82mvp")
 Config = ExtResource("2_fusw0")
 _arma = NodePath("Arma")
 
-[node name="Camera2D" type="Camera2D" parent="personaje 1"]
+[node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(-5, 15)
 zoom = Vector2(1.7, 1.7)
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="personaje 1"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-5, 16)
 scale = Vector2(0.2, 0.2)
 sprite_frames = SubResource("SpriteFrames_fusw0")
 
-[node name="Arma" parent="personaje 1" instance=ExtResource("11_td8ws")]
+[node name="Arma" parent="." instance=ExtResource("11_td8ws")]
 position = Vector2(5, 29)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="personaje 1"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-7, 23)
 shape = SubResource("CapsuleShape2D_nulrv")
+
+[node name="Vida" type="Node" parent="."]
+script = ExtResource("4_0c04v")

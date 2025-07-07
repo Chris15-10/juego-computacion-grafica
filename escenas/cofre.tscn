@@ -60,22 +60,20 @@ size = Vector2(41, 33)
 font_size = 11
 font_color = Color(0.968627, 0.941176, 1, 1)
 
-[node name="Node2D" type="Node2D"]
-
-[node name="Cofre" type="Area2D" parent="."]
+[node name="Cofre" type="Area2D"]
 script = ExtResource("1_powyj")
 ObjetosPosibles = Array[Resource]([ExtResource("2_rhnt1"), ExtResource("3_rhnt1")])
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Cofre"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_u6gii")
 animation = &"abierto"
 autoplay = "idle"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Cofre"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, 6.5)
 shape = SubResource("RectangleShape2D_28bvb")
 
-[node name="Mensaje" type="Label" parent="Cofre"]
+[node name="Mensaje" type="Label" parent="."]
 offset_left = -55.0
 offset_top = -31.0
 offset_right = 136.0

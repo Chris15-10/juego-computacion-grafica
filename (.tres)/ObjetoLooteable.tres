@@ -8,4 +8,3 @@
 script = ExtResource("3_3b1v5")
 Escena = ExtResource("2_lqwfh")
 ArmaConfig = ExtResource("1_dd7nv")
-Probabilidad = 1.0

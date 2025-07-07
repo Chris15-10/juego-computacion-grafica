@@ -1,12 +1,14 @@
 [gd_scene load_steps=4 format=3 uid="uid://bla24gbrt2rxx"]
 
 [ext_resource type="Script" uid="uid://ctwl7nhosp148" path="res://scripts/Bala.cs" id="1_eyy3g"]
-[ext_resource type="Texture2D" uid="uid://b28nmprc8lfdu" path="res://recursos/micro projectile (1).png" id="2_747uk"]
+[ext_resource type="Texture2D" uid="uid://b28nmprc8lfdu" path="res://recursos/armas/micro projectile (1).png" id="2_747uk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cvirm"]
 size = Vector2(14, 4)
 
 [node name="bala" type="Area2D"]
+collision_layer = 4
+collision_mask = 2
 script = ExtResource("1_eyy3g")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

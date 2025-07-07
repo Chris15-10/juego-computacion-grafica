@@ -10,20 +10,18 @@ size = Vector2(16, 7)
 [sub_resource type="LabelSettings" id="LabelSettings_g5y43"]
 font_size = 8
 
-[node name="Node2D" type="Node2D"]
-
-[node name="Item" type="Area2D" parent="."]
+[node name="Item" type="Area2D"]
 script = ExtResource("1_67bck")
 Arma = ExtResource("2_o4po1")
 
-[node name="Sprite2D" type="Sprite2D" parent="Item"]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_hdjqb")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Item"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_wvvap")
 
-[node name="Mensaje" type="Label" parent="Item"]
+[node name="Mensaje" type="Label" parent="."]
 offset_left = -46.0
 offset_top = -24.0
 offset_right = 145.0
