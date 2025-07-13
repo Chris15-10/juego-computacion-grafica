@@ -8,11 +8,12 @@ public partial class Personaje1 : CharacterBody2D
     private AnimatedSprite2D _animatedSprite;
     [Export] private Arma _arma;
     private Vector2 pos;
+    private AnimationPlayer _anim;
 
     public override void _Ready()
     {
         _animatedSprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
-
+        _anim = GetNode<AnimationPlayer>("AnimationPlayer");
         if (Config != null)
         {
             _animatedSprite.SpriteFrames = Config.Animaciones;
@@ -80,7 +81,16 @@ public partial class Personaje1 : CharacterBody2D
         {
             ArmaConfig anterior = _arma.Config;
             _arma.Config = Arma;
-            _arma.Aplicar();
+            if (_animatedSprite.FlipH)
+            {
+                _anim.Play("cambio arma_2");
+                
+            }
+            else
+            {
+                _anim.Play("cambio arma");
+            }
+                
             return anterior;
         }
         return null;
