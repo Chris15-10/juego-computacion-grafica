@@ -40,19 +40,24 @@ public partial class Personaje1 : CharacterBody2D
         if (_arma != null)
         {
             _arma.LookAt(GetGlobalMousePosition());
+            const float escala = 8f;
+            float direccion = GetGlobalMousePosition().X - _arma.GlobalPosition.X;
+            if (Mathf.Abs(direccion) > escala)
+            {
+                if (direccion > 0)
+                {
+                    _animatedSprite.FlipH = false;
+                    _arma.Position = pos;
+                    _arma.Scale = new Vector2(_arma.Scale.X, Math.Abs(_arma.Scale.Y));
+                }
+                else
+                {
+                    _animatedSprite.FlipH = true;
+                    _arma.Position = new Vector2(-pos.X - 8, pos.Y);
+                    _arma.Scale = new Vector2(_arma.Scale.X, -Math.Abs(_arma.Scale.Y));
+                }
+            }
 
-            if (_arma.GlobalPosition.X < GetGlobalMousePosition().X)
-            {
-                _animatedSprite.FlipH = false;
-                _arma.Position = pos;
-                Voltear(_arma);
-            }
-            else
-            {
-                _animatedSprite.FlipH = true;
-                _arma.Position = new Vector2(-pos.X - 8, pos.Y);
-                Voltear(_arma);
-            }
 
         }
         if (Input.IsActionJustPressed("disparo"))
@@ -61,18 +66,6 @@ public partial class Personaje1 : CharacterBody2D
             {
                 _arma.Disparar(GetGlobalMousePosition());
             }
-        }
-    }
-    private void Voltear(Arma arma)
-    {
-        float rot = Mathf.Wrap(arma.RotationDegrees, 0f, 360f);
-        if (rot > 90 && rot < 270)
-        {
-            arma.Scale = new Vector2(arma.Scale.X, -Math.Abs(arma.Scale.Y));
-        }
-        else
-        {
-            arma.Scale = new Vector2(arma.Scale.X, Math.Abs(arma.Scale.Y));
         }
     }
     public ArmaConfig RecogerArma(ArmaConfig Arma)

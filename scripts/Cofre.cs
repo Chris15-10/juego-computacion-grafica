@@ -84,7 +84,10 @@ public partial class Cofre : Area2D
         if (body is Personaje1)
         {
             _jugadorDentro = true;
-            _mensaje.Visible = true;
+            if (!_abierto)
+            {
+                _mensaje.Visible = true;
+            }
         }
     }
 
