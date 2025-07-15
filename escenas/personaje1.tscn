@@ -108,9 +108,8 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nulrv"]
-radius = 9.0
-height = 18.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1t8ll"]
+size = Vector2(21, 24)
 
 [sub_resource type="Animation" id="Animation_xlm3s"]
 length = 0.001
@@ -314,6 +313,7 @@ _data = {
 
 [node name="personaje 1" type="CharacterBody2D" node_paths=PackedStringArray("_arma") groups=["jugador"]]
 position = Vector2(5, -16)
+collision_layer = 4
 collision_mask = 5
 script = ExtResource("1_82mvp")
 Config = ExtResource("2_1t8ll")
@@ -334,8 +334,8 @@ animation = &"idle"
 position = Vector2(5, 29)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-3, 27)
-shape = SubResource("CapsuleShape2D_nulrv")
+position = Vector2(-3.5, 23)
+shape = SubResource("RectangleShape2D_1t8ll")
 
 [node name="Vida" type="Node" parent="."]
 script = ExtResource("4_0c04v")
