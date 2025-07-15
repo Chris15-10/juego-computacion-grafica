@@ -7,6 +7,7 @@ public partial class Personaje1 : CharacterBody2D
 
     private AnimatedSprite2D _animatedSprite;
     [Export] private Arma _arma;
+    
     private Vector2 pos;
     private AnimationPlayer _anim;
 
@@ -65,6 +66,12 @@ public partial class Personaje1 : CharacterBody2D
             if (_arma != null)
             {
                 _arma.Disparar(GetGlobalMousePosition());
+                _anim.Play("disparo");
+                var cam = GetNode<Camera2D>("Camera2D");
+                if (cam is CamaraJugador _cam)
+                {
+                    _cam.Shake(_arma.shake);
+                }
             }
         }
     }

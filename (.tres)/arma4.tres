@@ -34,3 +34,4 @@ BalaScene = ExtResource("2_q6vun")
 CadenciaDisparo = 0.5
 Icono = ExtResource("3_peg42")
 bala = ExtResource("4_5nsg2")
+shake = 0.7

@@ -4,12 +4,13 @@ using System;
 public partial class Arma : Node2D
 {
     [Export] public ArmaConfig Config;
-
+    [Export] public float shake;
     private AnimatedSprite2D _sprite;
     private Marker2D _canon;
 
     public override void _Ready()
     {
+        shake = Config.shake;
         _sprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
         _canon = GetNode<Marker2D>("Cañón");
 

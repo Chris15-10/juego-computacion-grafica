@@ -10,4 +10,5 @@ public partial class ArmaConfig : Resource
     [Export] public float CadenciaDisparo = 0.5f;
     [Export] public Texture2D Icono;
     [Export] public Texture2D bala;
+    [Export] public float shake=0.5f;
 }
