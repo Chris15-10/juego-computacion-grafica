@@ -4,11 +4,14 @@ using System;
 public partial class Vida : Node
 {
     [Export] public int salud_max = 100;
+
     public int salud_act;
-
     private AnimatedSprite2D _sprite;
+    private BarraVida _barravida;
+    [Export] public PackedScene DanoEnemigoEscena;
 
-    public override void _Ready()
+
+   public override void _Ready()
     {
         salud_act = salud_max;
 
@@ -16,22 +19,48 @@ public partial class Vida : Node
         _sprite = padre.GetNodeOrNull<AnimatedSprite2D>("AnimatedSprite2D");
 
         if (_sprite != null)
-        {
             _sprite.AnimationFinished += OnAnimacionTerminada;
+
+        // si el padre es el jugador se actualiza la barra de vida
+        if (padre.IsInGroup("jugador"))
+        {
+            var barra = GetTree().GetNodesInGroup("vidajugador");
+            if (barra.Count > 0)
+            {
+                _barravida = barra[0] as BarraVida;
+                _barravida?.ActualizarBarra(salud_act, salud_max);
+            }
         }
     }
 
     public void RecibirDano(int cant)
     {
-        salud_act -= cant;
-        if (salud_act <= 0)
+    salud_act -= cant;
+    salud_act = Math.Max(salud_act, 0);
+
+    // solo actualizar la barra de vida si es jugador
+    if (GetParent().IsInGroup("jugador"))
+    {
+        _barravida?.ActualizarBarra(salud_act, salud_max);
+    }
+    
+    float porcentaje = (float)salud_act / (float)salud_max;
+
+    if (!GetParent().IsInGroup("jugador") && DanoEnemigoEscena != null)
+        {
+            var instancia = DanoEnemigoEscena.Instantiate<DanoEnemigo>();
+            GetParent().AddChild(instancia);
+            instancia.GlobalPosition = GetParent<Node2D>().GlobalPosition + new Vector2(0, -10);
+            instancia.Mostrar(cant, porcentaje);
+        }
+
+
+    if (salud_act <= 0)
             Morir();
     }
 
     public void Morir()
     {
-        GD.Print("☠️ Personaje ha muerto.");
-
         var padre = GetParent();
 
         // si es enemigo reproduce animación
@@ -44,7 +73,6 @@ public partial class Vida : Node
         }
         else
         {
-
             padre.QueueFree();
         }
     }
@@ -72,7 +100,7 @@ public partial class Vida : Node
         }
         else if (padre.IsInGroup("enemigo"))
         {
-            // Desactiva colisiones del enemigo muerto
+            // desactiva colisiones del enemigo muerto
             var colision = padre.GetNodeOrNull<CollisionShape2D>("CollisionShape2D");
             if (colision != null)
             {

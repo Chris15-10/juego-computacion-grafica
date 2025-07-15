@@ -66,7 +66,14 @@ public partial class Personaje1 : CharacterBody2D
             if (_arma != null)
             {
                 _arma.Disparar(GetGlobalMousePosition());
-                _anim.Play("disparo");
+                if (!_animatedSprite.FlipH)
+                {
+                    _anim.Play("disparo");
+                }
+                else
+                {
+                    _anim.Play("disparo_i");
+                }
                 var cam = GetNode<Camera2D>("Camera2D");
                 if (cam is CamaraJugador _cam)
                 {

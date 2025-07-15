@@ -1,8 +1,9 @@
-[gd_scene load_steps=69 format=3 uid="uid://ve0w7igoxdhq"]
+[gd_scene load_steps=70 format=3 uid="uid://ve0w7igoxdhq"]
 
 [ext_resource type="Script" uid="uid://bnncddojv54o1" path="res://scripts/Enemigo.cs" id="1_743j8"]
 [ext_resource type="Texture2D" uid="uid://cocdh4dhwrgjj" path="res://recursos/enemigos/enemigo1 sprite(PNG) (1).png" id="2_743j8"]
 [ext_resource type="Script" uid="uid://b61cpsfthe45w" path="res://scripts/Vida.cs" id="4_hpq8b"]
+[ext_resource type="PackedScene" uid="uid://biroe8rv2yuor" path="res://escenas/DanoEnemigo.tscn" id="4_y7635"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hpq8b"]
 atlas = ExtResource("2_743j8")
@@ -520,3 +521,4 @@ autostart = true
 
 [node name="VidaEnemigo" type="Node" parent="."]
 script = ExtResource("4_hpq8b")
+DanoEnemigoEscena = ExtResource("4_y7635")

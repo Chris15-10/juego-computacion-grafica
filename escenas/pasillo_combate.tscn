@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=4 uid="uid://5d04x7cnbffg"]
+[gd_scene load_steps=29 format=4 uid="uid://5d04x7cnbffg"]
 
 [ext_resource type="Texture2D" uid="uid://b8hmejp051la2" path="res://recursos/mapas/Spacestation_Inside_A2.png" id="1_wrcac"]
 [ext_resource type="Texture2D" uid="uid://cg5xcupkp3oqq" path="res://recursos/mapas/Spacestation_Inside_A1.png" id="2_5lahv"]
@@ -11,6 +11,7 @@
 [ext_resource type="Resource" uid="uid://c0jetwaqhxuhe" path="res://(.tres)/arma 8 iteam.tres" id="9_a8g6b"]
 [ext_resource type="Resource" uid="uid://4c8p0c1ve56e" path="res://(.tres)/arma 5 item.tres" id="10_ryodb"]
 [ext_resource type="PackedScene" uid="uid://ve0w7igoxdhq" path="res://escenas/enemigo.tscn" id="11_a8g6b"]
+[ext_resource type="PackedScene" uid="uid://ct0uotevwxge3" path="res://escenas/BarraVida.tscn" id="12_ryodb"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_0awdg"]
 tile_data = PackedInt32Array(0, 65537, 1610612770, 65536, 1, 1610612770, 1, 65537, 1610612767, 65537, 1, 1610612767, 2, 65537, 1610612768, 65538, 1, 1610612768, 3, 65537, 1610612769, 65539, 1, 1610612769, 4, 65537, 1610612770, 65540, 1, 1610612770, 5, 65537, 1610612767, 65541, 1, 1610612767, 6, 65537, 1610612768, 65542, 1, 1610612768, 7, 65537, 1610612769, 65543, 1, 1610612769, 8, 65537, 1610612770, 65544, 1, 1610612770, 9, 65537, 1610612767, 65545, 1, 1610612767, 10, 65537, 1610612768, 65546, 1, 1610612768, 11, 65537, 1610612769, 65547, 1, 1610612769, 12, 65537, 1610612770, 65548, 1, 1610612770, 13, 65537, 1610612767, 65549, 1, 1610612767, 14, 65537, 1610612768, 65550, 1, 1610612768)
@@ -8671,3 +8672,5 @@ scale = Vector2(0.8, 0.8)
 [node name="personaje 1" parent="." instance=ExtResource("3_5lahv")]
 position = Vector2(240, 310)
 scale = Vector2(0.8, 0.8)
+
+[node name="BarraVida" parent="." groups=["vidajugador"] instance=ExtResource("12_ryodb")]

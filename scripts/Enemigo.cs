@@ -57,6 +57,8 @@ public partial class Enemigo : CharacterBody2D
 
     private void AtacarJugador()
     {
+        if (muerto) return;
+        
         if (player1 == null) return;
 
         float distancia = GlobalPosition.DistanceTo(player1.GlobalPosition);
