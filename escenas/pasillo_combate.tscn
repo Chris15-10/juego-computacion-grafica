@@ -8673,4 +8673,8 @@ scale = Vector2(0.8, 0.8)
 position = Vector2(240, 310)
 scale = Vector2(0.8, 0.8)
 
+[node name="Cofre3" parent="." instance=ExtResource("8_d0f20")]
+position = Vector2(339, 481)
+scale = Vector2(0.6, 0.6)
+
 [node name="BarraVida" parent="." groups=["vidajugador"] instance=ExtResource("12_ryodb")]

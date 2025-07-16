@@ -21,7 +21,6 @@ public partial class Vida : Node
         if (_sprite != null)
             _sprite.AnimationFinished += OnAnimacionTerminada;
 
-        // si el padre es el jugador se actualiza la barra de vida
         if (padre.IsInGroup("jugador"))
         {
             var barra = GetTree().GetNodesInGroup("vidajugador");

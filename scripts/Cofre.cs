@@ -4,7 +4,7 @@ using System;
 public partial class Cofre : Area2D
 {
     [Export] public ObjetoLootable[] ObjetosPosibles;
-
+    [Export] public CofreConfig Config;
     private Label _mensaje;
     private AnimatedSprite2D _sprite;
     private Texture2D _icon1;

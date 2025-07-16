@@ -1,7 +1,7 @@
 [gd_scene load_steps=31 format=3 uid="uid://d11vhsfxap15e"]
 
 [ext_resource type="Script" uid="uid://cpa8kubqs7rc1" path="res://scripts/Personaje1.cs" id="1_82mvp"]
-[ext_resource type="Resource" uid="uid://5ibfmegxl6v6" path="res://(.tres)/nexus.tres" id="2_1t8ll"]
+[ext_resource type="Resource" uid="uid://cwyjjrf063r8b" path="res://(.tres)/kyro.tres" id="2_1t8ll"]
 [ext_resource type="Script" uid="uid://bi8q4myu6m5vt" path="res://scripts/CamaraJugador.cs" id="3_1t8ll"]
 [ext_resource type="Texture2D" uid="uid://euckaqafhllh" path="res://recursos/personaje 1/spritesheet.png" id="3_rx5vl"]
 [ext_resource type="Script" uid="uid://b61cpsfthe45w" path="res://scripts/Vida.cs" id="4_0c04v"]
@@ -328,12 +328,15 @@ script = ExtResource("3_1t8ll")
 position = Vector2(-5, 16)
 scale = Vector2(0.2, 0.2)
 sprite_frames = SubResource("SpriteFrames_fusw0")
-animation = &"idle"
+animation = &"caminando"
+frame = 7
+frame_progress = 0.555042
 
 [node name="Arma" parent="." instance=ExtResource("11_td8ws")]
 position = Vector2(5, 29)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(-3.5, 23)
 shape = SubResource("RectangleShape2D_1t8ll")
 
