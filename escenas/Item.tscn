@@ -11,6 +11,7 @@ size = Vector2(16, 7)
 font_size = 8
 
 [node name="Item" type="Area2D"]
+collision_mask = 5
 script = ExtResource("1_67bck")
 Arma = ExtResource("2_o4po1")
 
