@@ -3,42 +3,32 @@ using System;
 
 public partial class Enemigo : CharacterBody2D
 {
-    [Export] public float Speed = 100.0f; // velocidad del enemigo
-    [Export] public float ActivacionDistancia = 200.0f; // distancia a partir de la cual persigue al personaje
-    private Node2D player1;
-    private AnimatedSprite2D _sprite;
+    [Export] public float Speed = 100f;
+    [Export] public float ActivacionDistancia = 200f;
 
-    // ataque al jugador
-    [Export] public int dano = 20;
-    [Export] public float rango_ataque = 40.0f;
+    protected Node2D player;
+    protected AnimatedSprite2D _sprite;
 
-    private Timer _timerAtaque;
+    protected bool muerto = false;
 
     public override void _Ready()
     {
-        var players = GetTree().GetNodesInGroup("jugador");
-        _sprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
+        var jugadores = GetTree().GetNodesInGroup("jugador");
+        if (jugadores.Count > 0)
+            player = jugadores[0] as Node2D;
 
-        if (players.Count > 0)
-        {
-            player1 = players[0] as Node2D;
-        }
-        _sprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
-        _timerAtaque = GetNode<Timer>("Ataque");
-        _timerAtaque.Timeout += AtacarJugador;
+        _sprite = GetNodeOrNull<AnimatedSprite2D>("AnimatedSprite2D");
     }
-
-    private bool muerto = false;
 
     public override void _PhysicsProcess(double delta)
     {
-        if (muerto || player1 == null) return;
+        if (muerto || player == null) return;
 
-        float distancia = GlobalPosition.DistanceTo(player1.GlobalPosition);
+        float distancia = GlobalPosition.DistanceTo(player.GlobalPosition);
 
         if (distancia <= ActivacionDistancia)
         {
-            Vector2 dir = GlobalPosition.DirectionTo(player1.GlobalPosition);
+            Vector2 dir = GlobalPosition.DirectionTo(player.GlobalPosition);
 
             Velocity = dir * Speed;
             MoveAndSlide();
@@ -55,31 +45,7 @@ public partial class Enemigo : CharacterBody2D
         }
     }
 
-    private void AtacarJugador()
-    {
-        if (muerto) return;
-        
-        if (player1 == null) return;
-
-        float distancia = GlobalPosition.DistanceTo(player1.GlobalPosition);
-
-        if (distancia <= rango_ataque)
-        {
-            // componente de vida dentro del jugador
-            var vida = player1.GetNodeOrNull<Vida>("Vida");
-            if (vida != null)
-            {
-                vida.RecibirDano(dano);
-            }
-        }
-    }
-    
-    public void SetMuerto(bool estado)
-    {
-        muerto = estado;
-    }
-    
-    private void ReproducirAnimacionPorDireccion(Vector2 direccion)
+    protected virtual void ReproducirAnimacionPorDireccion(Vector2 direccion)
     {
         if (direccion == Vector2.Zero)
             return;
@@ -101,5 +67,10 @@ public partial class Enemigo : CharacterBody2D
 
         _sprite.FlipH = voltear;
         _sprite.Play(anim);
+    }
+
+    public virtual void SetMuerto(bool estado)
+    {
+        muerto = estado;
     }
 }

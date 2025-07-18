@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=4 uid="uid://5d04x7cnbffg"]
+[gd_scene load_steps=30 format=4 uid="uid://5d04x7cnbffg"]
 
 [ext_resource type="Texture2D" uid="uid://b8hmejp051la2" path="res://recursos/mapas/Spacestation_Inside_A2.png" id="1_wrcac"]
 [ext_resource type="Texture2D" uid="uid://cg5xcupkp3oqq" path="res://recursos/mapas/Spacestation_Inside_A1.png" id="2_5lahv"]
@@ -10,7 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://c2rwr7sy48uc0" path="res://escenas/cofre.tscn" id="8_d0f20"]
 [ext_resource type="Resource" uid="uid://c0jetwaqhxuhe" path="res://(.tres)/arma 8 iteam.tres" id="9_a8g6b"]
 [ext_resource type="Resource" uid="uid://4c8p0c1ve56e" path="res://(.tres)/arma 5 item.tres" id="10_ryodb"]
-[ext_resource type="PackedScene" uid="uid://ve0w7igoxdhq" path="res://escenas/enemigo.tscn" id="11_a8g6b"]
+[ext_resource type="PackedScene" uid="uid://ve0w7igoxdhq" path="res://escenas/enemigo_cuerpo.tscn" id="11_a8g6b"]
+[ext_resource type="PackedScene" uid="uid://bfwhbl3bppcf7" path="res://escenas/enemigo_shooter.tscn" id="11_xgoq2"]
 [ext_resource type="PackedScene" uid="uid://ct0uotevwxge3" path="res://escenas/BarraVida.tscn" id="12_ryodb"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_0awdg"]
@@ -8645,6 +8646,10 @@ ObjetosPosibles = Array[Resource]([ExtResource("9_a8g6b"), ExtResource("10_ryodb
 position = Vector2(545, 202)
 scale = Vector2(0.6, 0.6)
 
+[node name="Cofre3" parent="." instance=ExtResource("8_d0f20")]
+position = Vector2(339, 481)
+scale = Vector2(0.6, 0.6)
+
 [node name="Enemigo" parent="." instance=ExtResource("11_a8g6b")]
 position = Vector2(1071.74, 310.334)
 scale = Vector2(0.8, 0.8)
@@ -8669,12 +8674,14 @@ scale = Vector2(0.8, 0.8)
 position = Vector2(966, 250)
 scale = Vector2(0.8, 0.8)
 
+[node name="EnemigoShooter2" parent="." instance=ExtResource("11_xgoq2")]
+position = Vector2(503, 252)
+
+[node name="EnemigoShooter" parent="." instance=ExtResource("11_xgoq2")]
+position = Vector2(85, 138)
+
 [node name="personaje 1" parent="." instance=ExtResource("3_5lahv")]
 position = Vector2(240, 310)
 scale = Vector2(0.8, 0.8)
-
-[node name="Cofre3" parent="." instance=ExtResource("8_d0f20")]
-position = Vector2(339, 481)
-scale = Vector2(0.6, 0.6)
 
 [node name="BarraVida" parent="." groups=["vidajugador"] instance=ExtResource("12_ryodb")]

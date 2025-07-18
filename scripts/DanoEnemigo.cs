@@ -24,18 +24,9 @@ public partial class DanoEnemigo : Node2D
         _label = GetNode<Label>("Texto");
         _label.Text = cantidad.ToString();
 
-        if (porcentajeVida > 0.7f)
-        {
-            _label.Modulate = new Color("2ecc71"); // verde
-        }
-        else if (porcentajeVida > 0.3f)
-        {
-            _label.Modulate = new Color("f39c12"); // naranja
-        }
-        else
-        {
-            _label.Modulate = new Color("e74c3c"); // rojo
-        }
+    
+        _label.Modulate = new Color("#EEE8AA"); 
+        
     }
 
     private void OnTimerTimeout()

@@ -5,6 +5,7 @@ public partial class Arma : Node2D
 {
     [Export] public ArmaConfig Config;
     [Export] public float shake;
+     [Export] public string Grupo = "enemigo"; 
     private AnimatedSprite2D _sprite;
     private Marker2D _canon;
 
@@ -35,9 +36,11 @@ public partial class Arma : Node2D
 
         balaInst.Rotation = direction.Angle();
 
-        balaInst.Call("Init", direction, Config.velocidad, Config.Dano, Config.bala);
-        GetTree().CurrentScene.AddChild(balaInst);
+        string objetivoGrupo = GetParent().IsInGroup("jugador") ? "enemigo" : "jugador";
+        balaInst.Call("Init", direction, Config.velocidad, Config.Dano, Config.bala, objetivoGrupo);
 
+        GetTree().CurrentScene.AddChild(balaInst);
+        
         _sprite?.Play("disparo");
 
     }

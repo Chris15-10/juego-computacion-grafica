@@ -56,6 +56,13 @@ x={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="paredes y piso"
+2d_physics/layer_2="Item y cofres"
+2d_physics/layer_3="jugador"
+2d_physics/layer_4="Enemigo"
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0

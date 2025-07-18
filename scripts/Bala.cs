@@ -6,8 +6,8 @@ public partial class Bala : Area2D
     private Vector2 _direccion;
     private int _daño;
     private int _velocidad;
-
     private Sprite2D _sprite;
+    private string _grupo; // variable para indicar a quien le hace daño las balas (enemigo shooter o jugador) 
 
     public override void _Ready()
     {
@@ -15,11 +15,12 @@ public partial class Bala : Area2D
         BodyEntered += OnBodyEntered;
     }
 
-    public void Init(Vector2 direction, int velocidad, int dano, Texture2D textura)
+    public void Init(Vector2 direction, int velocidad, int dano, Texture2D textura, string grupo)
     {
         _direccion = direction;
         _velocidad = velocidad;
         _daño = dano;
+        _grupo = grupo;
 
         // Asegúrate que el sprite ya esté referenciado
         if (_sprite == null)
@@ -42,18 +43,27 @@ public partial class Bala : Area2D
             QueueFree();
         }
     }
+    
     private void OnBodyEntered(Node body)
+{
+    if (body is TileMapLayer)
     {
-        var vida = body.GetNodeOrNull<Vida>("VidaEnemigo");
+        QueueFree(); 
+        return;
+    }
 
+    if (body.IsInGroup(_grupo))
+    {
+        var vida = body.GetNodeOrNull<Vida>("Vida");
         if (vida != null)
         {
-            GD.Print("Bala golpeó a: " + body.Name);
             vida.RecibirDano(_daño);
         }
-
-        QueueFree(); 
+        QueueFree();
     }
 }
 
+
+
+}
 
