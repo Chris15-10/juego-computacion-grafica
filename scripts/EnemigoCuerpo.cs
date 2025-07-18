@@ -1,6 +1,6 @@
 using Godot;
 using System;
-
+// prueba de github mari
 public partial class EnemigoCuerpo : Enemigo
 {
     [Export] public int dano = 20;
