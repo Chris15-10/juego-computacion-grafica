@@ -7,8 +7,7 @@ public partial class Bala : Area2D
     private int _daño;
     private int _velocidad;
     private Sprite2D _sprite;
-    private string _grupo; // variable para indicar a quien le hace daño las balas (enemigo shooter o jugador) 
-
+    private string _grupo;
     public override void _Ready()
     {
         _sprite = GetNode<Sprite2D>("Sprite2D");
@@ -22,7 +21,6 @@ public partial class Bala : Area2D
         _daño = dano;
         _grupo = grupo;
 
-        // Asegúrate que el sprite ya esté referenciado
         if (_sprite == null)
         {
             _sprite = GetNode<Sprite2D>("Sprite2D");

@@ -4,7 +4,7 @@ using System;
 public partial class EnemigoShooter : Enemigo
 {
     [Export] public float RangoDisparo = 200.0f;
-    [Export] public float DistanciaMinima = 100.0f; // No se acerca más de esto
+    [Export] public float DistanciaMinima = 100.0f; 
     [Export] public float VelocidadShooter = 40.0f;
 
     private Arma _arma;
