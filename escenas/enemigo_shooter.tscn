@@ -528,4 +528,5 @@ script = ExtResource("3_jnn0d")
 DanoEnemigoEscena = ExtResource("4_0nb4n")
 
 [node name="Arma" parent="." instance=ExtResource("5_jnn0d")]
+visible = false
 position = Vector2(2, 5)
