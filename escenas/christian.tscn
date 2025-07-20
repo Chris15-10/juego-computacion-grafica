@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://s8j5obgq1lnx"]
+
+[ext_resource type="Texture2D" uid="uid://dkk4mfrv5n3f2" path="res://escenas/ERA Weapon Primary (61).png" id="1_1mosy"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vnpbr"]
+radius = 23.5372
+
+[node name="Christian" type="Node2D"]
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+
+[node name="EraWeaponPrimary(61)" type="Sprite2D" parent="RigidBody2D"]
+position = Vector2(80, 59)
+texture = ExtResource("1_1mosy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+position = Vector2(79, 62)
+shape = SubResource("CircleShape2D_vnpbr")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=4 uid="uid://c127r6sjw4le"]
+[gd_scene load_steps=69 format=4 uid="uid://bchmfb20xietl"]
 
 [ext_resource type="Texture2D" uid="uid://c6pk47xof8t8q" path="res://recursos/mapas/Spaceship_walls.png" id="1_7g2kk"]
 [ext_resource type="Texture2D" uid="uid://dmobtl67ncdkv" path="res://recursos/mapas/Godot_Spacestation_Inside_A2.png" id="2_fqitv"]
