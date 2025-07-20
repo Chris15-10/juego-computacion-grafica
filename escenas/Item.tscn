@@ -20,6 +20,7 @@ Arma = ExtResource("2_o4po1")
 texture = ExtResource("2_hdjqb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_wvvap")
 
