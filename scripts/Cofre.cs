@@ -22,6 +22,10 @@ public partial class Cofre : Area2D
         _anim = GetNode<AnimationPlayer>("AnimationPlayer");
 
         _mensaje.Visible = false;
+        if (Config != null)
+        {
+            _sprite.SpriteFrames = Config.Animaciones;
+        }
 
         for (int i = 0; i < ObjetosPosibles.Length; i++)
         {
@@ -70,10 +74,13 @@ public partial class Cofre : Area2D
             var instancia = obj.Escena.Instantiate();
             if (instancia is Item item)
             {
-                Vector2 offset = new Vector2(40 * direccion *this.Scale.X, 35*this.Scale.Y);
-                item.Position = GlobalPosition + offset;
+                Vector2 offset = new Vector2(40 * direccion * this.Scale.X, 35 * this.Scale.Y);
+                item.Position = GlobalPosition + offset - new Vector2(0,-10);
                 item.Arma = obj.ArmaConfig;
-                GetTree().CurrentScene.AddChild(item);
+                GetParent().AddChild(item);
+                item.ZAsRelative = true;
+                item.ZIndex = this.ZIndex - 1; 
+                item.YSortEnabled = true;
                 direccion *= -1; 
             }
         }
