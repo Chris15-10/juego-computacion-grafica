@@ -313,7 +313,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"walk1",
-"speed": 6.0
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -500,24 +500,24 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ba4ss"]
-size = Vector2(39, 24)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_catls"]
 
 [node name="EnemigoShooter" type="CharacterBody2D" groups=["enemigo"]]
 position = Vector2(1, 1)
 collision_layer = 8
 collision_mask = 5
 script = ExtResource("1_catls")
-RangoDisparo = 150.0
+DistanciaMinima = 80.0
 VelocidadShooter = 60.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(5, -3)
 sprite_frames = SubResource("SpriteFrames_sr6pl")
-animation = &"walk1"
+animation = &"walk9"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-4.5, 2)
-shape = SubResource("RectangleShape2D_ba4ss")
+position = Vector2(-1, 2)
+shape = SubResource("CapsuleShape2D_catls")
 
 [node name="Disparo" type="Timer" parent="." groups=["enemigo"]]
 wait_time = 0.4
@@ -530,3 +530,8 @@ DanoEnemigoEscena = ExtResource("4_0nb4n")
 [node name="Arma" parent="." instance=ExtResource("5_jnn0d")]
 visible = false
 position = Vector2(2, 5)
+
+[node name="RayJugador" type="RayCast2D" parent="."]
+position = Vector2(0, 4)
+target_position = Vector2(0, 0)
+collision_mask = 5

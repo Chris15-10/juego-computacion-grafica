@@ -3,12 +3,13 @@ using System;
 
 public partial class EnemigoShooter : Enemigo
 {
-    [Export] public float RangoDisparo = 200.0f;
-    [Export] public float DistanciaMinima = 100.0f; 
+    [Export] public float RangoDisparo = 200.0f; // distancia desde la que disparan (determina el tamaño del Raycast)
+    [Export] public float DistanciaMinima = 100.0f; // distancia a partir de la que los enemigos se alejan del jugador
     [Export] public float VelocidadShooter = 40.0f;
 
     private Arma _arma;
     private Timer _timerDisparo;
+    private RayCast2D _rayJugador;
 
     public override void _Ready()
     {
@@ -16,6 +17,11 @@ public partial class EnemigoShooter : Enemigo
 
         _arma = GetNodeOrNull<Arma>("Arma");
         _timerDisparo = GetNodeOrNull<Timer>("Disparo");
+        _rayJugador = GetNodeOrNull<RayCast2D>("RayJugador");
+
+        if (_rayJugador != null)
+            _rayJugador.Enabled = true;
+
         if (_timerDisparo != null)
             _timerDisparo.Timeout += Disparar;
     }
@@ -24,45 +30,64 @@ public partial class EnemigoShooter : Enemigo
     {
         if (muerto || player == null) return;
 
-        float distancia = GlobalPosition.DistanceTo(player.GlobalPosition);
+        Node2D centro = player.GetNodeOrNull<Node2D>("Centro");
+        if (centro == null) return;
 
-        if (distancia > RangoDisparo)
+        Vector2 direccionCentro = (centro.GlobalPosition - GlobalPosition).Normalized();
+
+        if (_rayJugador != null)
         {
-            // Muy lejos: acércate lentamente
-            Vector2 direccion = (player.GlobalPosition - GlobalPosition).Normalized();
-            Velocity = direccion * VelocidadShooter;
-            MoveAndSlide();
+            _rayJugador.TargetPosition = direccionCentro * RangoDisparo;
+            _rayJugador.ForceRaycastUpdate();
         }
-        else if (distancia < DistanciaMinima)
+
+        float distancia = GlobalPosition.DistanceTo(centro.GlobalPosition);
+
+        bool jugadorVisible = false;
+        if (_rayJugador != null && _rayJugador.IsColliding())
         {
-            // Demasiado cerca: aléjate
-            Vector2 direccion = (GlobalPosition - player.GlobalPosition).Normalized();
-            Velocity = direccion * VelocidadShooter;
-            MoveAndSlide();
+            Node? collider = _rayJugador.GetCollider() as Node;
+            if (collider != null && (collider.IsInGroup("jugador") || (collider.GetParent()?.IsInGroup("jugador") == true)))
+                jugadorVisible = true;
+        }
+
+        if (distancia < DistanciaMinima)
+        {
+            Velocity = -direccionCentro * VelocidadShooter;
+        }
+        else if (jugadorVisible)
+        {
+            Velocity = Vector2.Zero;
+            _arma?.LookAt(centro.GlobalPosition);
         }
         else
         {
-            // En rango ideal: quieto
-            Velocity = Vector2.Zero;
-            MoveAndSlide();
-
-            if (_arma != null)
-            {
-                _arma.LookAt(player.GlobalPosition);
-            }
+            Velocity = direccionCentro * VelocidadShooter;
         }
+
+        MoveAndSlide();
+
+        if (direccionCentro != Vector2.Zero)
+            ReproducirAnimacionPorDireccion(direccionCentro);
     }
 
     private void Disparar()
     {
-        if (muerto || player == null || _arma == null) return;
+        if (muerto || _arma == null || _rayJugador == null) return;
 
-        float distancia = GlobalPosition.DistanceTo(player.GlobalPosition);
+        Vector2 direccion = (player.GlobalPosition - GlobalPosition).Normalized();
+        _rayJugador.TargetPosition = direccion * RangoDisparo;
+        _rayJugador.ForceRaycastUpdate();
 
-        if (distancia <= RangoDisparo)
+        if (_rayJugador.IsColliding())
         {
-            _arma.LookAt(player.GlobalPosition);
-            _arma.Disparar(player.GlobalPosition);
+            Node? collider = _rayJugador.GetCollider() as Node;
+            if (collider != null && (collider.IsInGroup("jugador") || (collider.GetParent()?.IsInGroup("jugador") == true)))
+            {
+                _arma.LookAt(player.GlobalPosition);
+                _arma.Disparar(player.GlobalPosition);
+                return;
+            }
         }
     }
 }

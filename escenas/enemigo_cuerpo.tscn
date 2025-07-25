@@ -499,22 +499,24 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ba4ss"]
-size = Vector2(39, 24)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7uk7m"]
+radius = 13.0
+height = 32.0
 
-[node name="EnemigoShooter" type="CharacterBody2D" groups=["enemigo"]]
+[node name="EnemigoShooter2" type="CharacterBody2D" groups=["enemigo"]]
 collision_layer = 8
 collision_mask = 33
 script = ExtResource("1_7uk7m")
 Speed = 80.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(1, 0)
 sprite_frames = SubResource("SpriteFrames_sr6pl")
-animation = &"walk4"
+animation = &"walk1"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-4.5, 2)
-shape = SubResource("RectangleShape2D_ba4ss")
+position = Vector2(-2, 1)
+shape = SubResource("CapsuleShape2D_7uk7m")
 
 [node name="Ataque" type="Timer" parent="."]
 wait_time = 1.5
