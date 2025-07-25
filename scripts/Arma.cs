@@ -29,20 +29,16 @@ public partial class Arma : Node2D
         if (bala == null) return;
 
         Node2D balaInst = bala.Instantiate<Node2D>();
-
-        balaInst.Position = _canon.GlobalPosition;
+        balaInst.Position = _canon.GlobalPosition; 
+        GetTree().CurrentScene.AddChild(balaInst); 
 
         Vector2 direction = (mousePos - _canon.GlobalPosition).Normalized();
+        string objetivoGrupo = GetParent().IsInGroup("jugador") ? "enemigo" : "jugador";
 
+        balaInst.Call("Init", direction, Config.velocidad, Config.Dano, Config.bala, objetivoGrupo);
         balaInst.Rotation = direction.Angle();
 
-        string objetivoGrupo = GetParent().IsInGroup("jugador") ? "enemigo" : "jugador";
-        balaInst.Call("Init", direction, Config.velocidad, Config.Dano, Config.bala, objetivoGrupo);
-
-        GetTree().CurrentScene.AddChild(balaInst);
-        
         _sprite?.Play("disparo");
-
     }
     public void Aplicar()
     {
