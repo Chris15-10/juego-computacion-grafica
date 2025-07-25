@@ -314,10 +314,11 @@ shape = SubResource("RectangleShape2D_28bvb")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 y_sort_enabled = true
+position = Vector2(1, 6)
 sprite_frames = SubResource("SpriteFrames_u6gii")
 animation = &"abierto"
 autoplay = "idle"
-offset = Vector2(0, 10)
+offset = Vector2(0, 5)
 
 [node name="Mensaje" type="Label" parent="."]
 offset_left = -67.0
