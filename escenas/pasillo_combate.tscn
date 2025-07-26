@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=4 uid="uid://5d04x7cnbffg"]
+[gd_scene load_steps=39 format=4 uid="uid://5d04x7cnbffg"]
 
 [ext_resource type="Texture2D" uid="uid://b8hmejp051la2" path="res://recursos/mapas/Spacestation_Inside_A2.png" id="1_wrcac"]
 [ext_resource type="Texture2D" uid="uid://cg5xcupkp3oqq" path="res://recursos/mapas/Spacestation_Inside_A1.png" id="2_5lahv"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://cosg8a8budelp" path="res://recursos/mapas/Spacestation_Inside_E.png" id="6_anirv"]
 [ext_resource type="Resource" uid="uid://xklxvbetebkb" path="res://(.tres)/cofre2.tres" id="8_4e6rq"]
 [ext_resource type="PackedScene" uid="uid://c2rwr7sy48uc0" path="res://escenas/cofre.tscn" id="8_d0f20"]
+[ext_resource type="Resource" uid="uid://dkclusbj6g4eg" path="res://(.tres)/enemigo2.tres" id="10_lmqlo"]
 [ext_resource type="Resource" uid="uid://y7vn1gp46kso" path="res://(.tres)/cofre1.tres" id="11_6gg8x"]
 [ext_resource type="PackedScene" uid="uid://ve0w7igoxdhq" path="res://escenas/enemigo_cuerpo.tscn" id="11_a8g6b"]
 [ext_resource type="PackedScene" uid="uid://bfwhbl3bppcf7" path="res://escenas/enemigo_shooter.tscn" id="11_xgoq2"]
@@ -20,6 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://b1rbyggi2r2dr" path="res://escenas/computadora de lado 1.tscn" id="18_11tkw"]
 [ext_resource type="PackedScene" uid="uid://y6xtsfm0m4tk" path="res://escenas/computadora1.tscn" id="19_n7raw"]
 [ext_resource type="PackedScene" uid="uid://bc46o7hg0ofsg" path="res://escenas/computadora2.tscn" id="20_hjxlb"]
+[ext_resource type="PackedScene" uid="uid://0n0jnv3gt2es" path="res://escenas/spawner_enemigos.tscn" id="21_lmqlo"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_0awdg"]
 tile_data = PackedInt32Array(0, 65537, 1610612770, 65536, 1, 1610612770, 1, 65537, 1610612767, 65537, 1, 1610612767, 2, 65537, 1610612768, 65538, 1, 1610612768, 3, 65537, 1610612769, 65539, 1, 1610612769, 4, 65537, 1610612770, 65540, 1, 1610612770, 5, 65537, 1610612767, 65541, 1, 1610612767, 6, 65537, 1610612768, 65542, 1, 1610612768, 7, 65537, 1610612769, 65543, 1, 1610612769, 8, 65537, 1610612770, 65544, 1, 1610612770, 9, 65537, 1610612767, 65545, 1, 1610612767, 10, 65537, 1610612768, 65546, 1, 1610612768, 11, 65537, 1610612769, 65547, 1, 1610612769, 12, 65537, 1610612770, 65548, 1, 1610612770, 13, 65537, 1610612767, 65549, 1, 1610612767, 14, 65537, 1610612768, 65550, 1, 1610612768)
@@ -8653,40 +8655,53 @@ y_sort_enabled = true
 [node name="EnemigoShooter2" parent="Ysort" instance=ExtResource("11_xgoq2")]
 y_sort_enabled = true
 position = Vector2(503, 252)
+config = ExtResource("10_lmqlo")
 
 [node name="Enemigo6" parent="Ysort" instance=ExtResource("11_a8g6b")]
 y_sort_enabled = true
 position = Vector2(966, 250)
 scale = Vector2(0.8, 0.8)
+config = ExtResource("10_lmqlo")
 
 [node name="Enemigo" parent="Ysort" instance=ExtResource("11_a8g6b")]
 y_sort_enabled = true
 position = Vector2(1071.74, 310.334)
 scale = Vector2(0.8, 0.8)
+config = ExtResource("10_lmqlo")
+
+[node name="SpawnerEnemigos" parent="Ysort/Enemigo" instance=ExtResource("21_lmqlo")]
+position = Vector2(-214.675, 265.833)
+scale = Vector2(3, 1)
+maximo = 25
 
 [node name="Enemigo2" parent="Ysort" instance=ExtResource("11_a8g6b")]
 y_sort_enabled = true
 position = Vector2(740, 542)
 scale = Vector2(0.8, 0.8)
+config = ExtResource("10_lmqlo")
 
 [node name="Enemigo3" parent="Ysort" instance=ExtResource("11_a8g6b")]
 y_sort_enabled = true
 position = Vector2(645.373, 222.152)
 scale = Vector2(0.8, 0.8)
+config = ExtResource("10_lmqlo")
 
 [node name="Enemigo4" parent="Ysort" instance=ExtResource("11_a8g6b")]
 y_sort_enabled = true
 position = Vector2(845, 364)
 scale = Vector2(0.8, 0.8)
+config = ExtResource("10_lmqlo")
 
 [node name="Enemigo5" parent="Ysort" instance=ExtResource("11_a8g6b")]
 y_sort_enabled = true
 position = Vector2(859, 497)
 scale = Vector2(0.8, 0.8)
+config = ExtResource("10_lmqlo")
 
 [node name="EnemigoShooter" parent="Ysort" instance=ExtResource("11_xgoq2")]
 y_sort_enabled = true
 position = Vector2(85, 138)
+config = ExtResource("10_lmqlo")
 
 [node name="personaje 1" parent="Ysort" instance=ExtResource("3_5lahv")]
 y_sort_enabled = true

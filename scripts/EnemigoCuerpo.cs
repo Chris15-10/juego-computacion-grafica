@@ -3,16 +3,25 @@ using System;
 // prueba de github mari
 public partial class EnemigoCuerpo : Enemigo
 {
+    [Export] public enemigoRecurso config;
     [Export] public int dano = 20;
     [Export] public float rango_ataque = 40.0f;
     private Timer _timerAtaque;
-
+    protected AnimatedSprite2D _animatedSprite;
     public override void _Ready()
     {
         base._Ready();
+        _animatedSprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
         _timerAtaque = GetNodeOrNull<Timer>("Ataque");
         if (_timerAtaque != null)
             _timerAtaque.Timeout += AtacarJugador;
+        
+        if (config != null)
+        {
+            _animatedSprite.SpriteFrames = config._sprite;
+            _animatedSprite.Scale = new Vector2(config.tamano, config.tamano);
+            dano = config.dano;
+        }
     }
 
     private void AtacarJugador()

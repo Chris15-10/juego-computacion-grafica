@@ -1,7 +1,8 @@
-[gd_scene load_steps=71 format=3 uid="uid://bfwhbl3bppcf7"]
+[gd_scene load_steps=77 format=3 uid="uid://bfwhbl3bppcf7"]
 
 [ext_resource type="Script" uid="uid://bu2mapfmkfmkc" path="res://scripts/EnemigoShooter.cs" id="1_catls"]
 [ext_resource type="Texture2D" uid="uid://cocdh4dhwrgjj" path="res://recursos/enemigos/enemigo1 sprite(PNG) (1).png" id="2_catls"]
+[ext_resource type="Texture2D" uid="uid://dhs14cls5ogy3" path="res://recursos/enemigos/enemigo1 .5.png" id="3_0nb4n"]
 [ext_resource type="Script" uid="uid://b61cpsfthe45w" path="res://scripts/Vida.cs" id="3_jnn0d"]
 [ext_resource type="PackedScene" uid="uid://biroe8rv2yuor" path="res://escenas/DanoEnemigo.tscn" id="4_0nb4n"]
 [ext_resource type="PackedScene" uid="uid://c8at1ynm5h7s7" path="res://escenas/armas.tscn" id="5_jnn0d"]
@@ -37,6 +38,26 @@ region = Rect2(550, 940, 50, 47)
 [sub_resource type="AtlasTexture" id="AtlasTexture_y3jsr"]
 atlas = ExtResource("2_catls")
 region = Rect2(650, 940, 50, 47)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x4ys6"]
+atlas = ExtResource("3_0nb4n")
+region = Rect2(200, 290, 50, 58)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5s3jx"]
+atlas = ExtResource("3_0nb4n")
+region = Rect2(150, 290, 50, 58)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ldhg"]
+atlas = ExtResource("3_0nb4n")
+region = Rect2(100, 290, 50, 58)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kf48t"]
+atlas = ExtResource("3_0nb4n")
+region = Rect2(50, 290, 50, 58)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s5c4k"]
+atlas = ExtResource("3_0nb4n")
+region = Rect2(0, 290, 50, 58)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kvqgy"]
 atlas = ExtResource("2_catls")
@@ -291,6 +312,26 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_x4ys6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5s3jx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ldhg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kf48t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s5c4k")
+}],
+"loop": true,
+"name": &"spawn",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_kvqgy")
 }, {
 "duration": 1.0,
@@ -513,7 +554,9 @@ VelocidadShooter = 60.0
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(5, -3)
 sprite_frames = SubResource("SpriteFrames_sr6pl")
-animation = &"walk9"
+animation = &"muerte"
+frame = 7
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1, 2)

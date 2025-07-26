@@ -60,12 +60,12 @@ public partial class Bala : Area2D
             QueueFree();
         }
     }
-    
+
     private void OnBodyEntered(Node body)
     {
         if (body is TileMapLayer)
         {
-            QueueFree(); 
+            QueueFree();
             return;
         }
 
@@ -75,10 +75,17 @@ public partial class Bala : Area2D
             if (vida != null)
             {
                 vida.RecibirDano(_daño);
-            }
-            QueueFree();
-        }
-    }
+                if (body is CharacterBody2D characterBody)
+                {
+                    float fuerzaRetroceso = _daño * 500;
+                    characterBody.Velocity = -_direccion * fuerzaRetroceso;
+                    GD.Print($"¡Jugador impactado! Retroceso aplicado: {characterBody.Velocity}");
+                }
 
+                QueueFree(); // La bala se destruye después de impactar
+            }
+        }
+
+    }
 }
 

@@ -3,10 +3,11 @@ using System;
 
 public partial class EnemigoShooter : Enemigo
 {
+    [Export] public enemigoRecurso config;
     [Export] public float RangoDisparo = 200.0f; // distancia desde la que disparan (determina el tamaño del Raycast)
     [Export] public float DistanciaMinima = 100.0f; // distancia a partir de la que los enemigos se alejan del jugador
     [Export] public float VelocidadShooter = 40.0f;
-
+    protected AnimatedSprite2D _animatedSprite;
     private Arma _arma;
     private Timer _timerDisparo;
     private RayCast2D _rayJugador;
@@ -14,11 +15,20 @@ public partial class EnemigoShooter : Enemigo
     public override void _Ready()
     {
         base._Ready();
-
+        _animatedSprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
         _arma = GetNodeOrNull<Arma>("Arma");
         _timerDisparo = GetNodeOrNull<Timer>("Disparo");
         _rayJugador = GetNodeOrNull<RayCast2D>("RayJugador");
 
+        if (config != null)
+        {
+            _animatedSprite.SpriteFrames = config._sprite;
+            _animatedSprite.Scale = new Vector2(config.tamano, config.tamano);
+            RangoDisparo = config.RangoDisparo;
+            DistanciaMinima = config.DistanciaMinima;
+            VelocidadShooter = config.velocidad;
+        }
+        
         if (_rayJugador != null)
             _rayJugador.Enabled = true;
 
